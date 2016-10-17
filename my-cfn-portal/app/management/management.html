@@ -1,0 +1,21 @@
+<div class="row dashboard-page">
+	<div class="col-sm-12">
+		<main>
+			<div class="content-container">
+				<h3>Management Here</h3>
+				<div class="col-sm-12">
+					<ul class="list-group">
+						<li class="list-group-item" *ngFor="let data of dataset; let i = index">
+							<span> Name : {{data.name}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="form-group">
+				<input class="form-control" type="text" [(ngModel)]="name">
+				</div>
+				<a class="btn btn-primary" (click)="add(name)">Add</a>
+
+			</div>
+		</main>
+	</div>
+</div>

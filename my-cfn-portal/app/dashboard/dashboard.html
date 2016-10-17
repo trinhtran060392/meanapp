@@ -1,0 +1,85 @@
+<div class="row dashboard-page">
+	<div class="col-sm-12">
+		<main>
+			<div class="content-container">
+				<div class="slide_wrap dnd container">
+					<div class="row">
+						<div class="bosyu_wrap">
+							<div class=" col-sm-12 title">
+								<div class="col-sm-6">
+									<span class="material-icons">apps
+									</span><h3>値入力</h3>
+								</div>
+								<div class="col-sm-3">
+									<a routerLink="/management" routerLinkActive="active">Data Management</a>
+								</div>
+								<div class="col-sm-3">
+									<span class="pull-right"><a uiSref="app.graph" [uiParams]="queryObj">Graph</a></span>
+								</div>
+							</div>
+							<div class="col-left">
+								<div class="box-value">
+									<div class="box box-1" *ngFor="let pair of pairs; let i = index">
+										<p>{{pairs[0].name}} * {{pairs[1].name}} + {{pairs[2].name}} * {{pairs[3].name}} +  {{(i + 1) * 100}} = 
+										{{pairs[0].value * pairs[1].value + pairs[2].value * pairs[3].value + (i + 1) * 100}}
+										</p>
+									</div>
+								</div>
+							</div>
+						<div class="col-right">
+							<div class="slider_pips">
+								<div class="item" *ngFor="let pair of pairs">
+									<div class="right"><label>min:{{pair.min}} max:{{pair.max}}</label>
+									<input type="range" max="{{pair.max}}" min="{{pair.min}}" [(ngModel)]="pair.value">
+									</div>
+								</div>
+							</div>
+							<div class="table-value">
+								<table>
+									<thead>
+										<tr>
+											<th>仮説名</th>
+											<td *ngFor="let pair of pairs"><input type="text" [(ngModel)]="pair.name"></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th>値</th>
+											<td *ngFor="let pair of pairs; let i = index"><input type="number" max="{{pair.max}}" min="{{pair.min}}" class="number" [(ngModel)]="pair.value" (dblclick)="select(i)"></td>
+										</tr>
+										<tr>
+											<th>Actions</th>
+											<td *ngFor="let pair of pairs"><a uiSref="app.dashboard.detail" [uiParams]="{id: pair.value}">Edit</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="button-value"><button type="button" class="button2">保存</button>
+								<div class="choose-file">ロード<input type="file" class="upload"></div>
+							</div>
+							<div class="popup" [ngClass]="{'isShow' : editable}">
+								<div class="popup-content">
+									<div class="popup-container">
+										<h2>Edit Cell</h2><div class="box-content">
+										<span>Name</span>
+										<p>{{selected.name}}</p>
+										<span>Value</span>
+										<div class="box-input">
+											<input type="number" min="2" max="10" value="{{selected.value}}" [(ngModel)]="selected.value">
+										</div></div>
+										<div class="box-button">
+											<button class="bt-cancel" (click)="editable=false">Cancel
+											</button>
+											<button class="bt-ok" (click)="set(selected.index)">OK</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</div>

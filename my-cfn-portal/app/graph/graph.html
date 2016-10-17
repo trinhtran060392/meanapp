@@ -1,0 +1,19 @@
+<div id="myChart">
+	<div class="row chart-page">
+		<div class="col-sm-12">
+			<main>
+				<div class="content-container">
+					<base-chart class="chart"
+				    [datasets]="barChartData"
+				    [labels]="labels"
+				    [options]="barChartOptions"
+				    [legend]="barChartLegend"
+				    [chartType]="barChartType"
+				    (chartHover)="chartHovered($event)"
+				    (chartClick)="chartClicked($event)">
+				  </base-chart>
+				</div>
+			</main>
+		</div>
+	</div>
+
