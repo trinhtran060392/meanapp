@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardFooterComponent } from './dashboard.footer.component';
 import { DashboardDetailComponent } from './dashboard.detail.component';

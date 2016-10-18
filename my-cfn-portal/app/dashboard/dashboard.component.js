@@ -10,39 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var http_1 = require('@angular/http');
+var dashboard_service_1 = require('./dashboard.service');
 var DashboardComponent = (function () {
-    function DashboardComponent(router) {
+    function DashboardComponent(router, http, dashboardService) {
+        var _this = this;
         this.router = router;
+        this.http = http;
+        this.dashboardService = dashboardService;
         this.selected = {};
         this.editable = false;
         this.queryObj = {};
-        this.pairs = [
-            {
-                name: "a",
-                value: 9,
-                min: 2,
-                max: 10
-            }, {
-                name: "b",
-                value: 4,
-                min: 1,
-                max: 9
-            }, {
-                name: "c",
-                value: 6,
-                min: 0,
-                max: 10
-            }, {
-                name: "d",
-                value: 8,
-                min: 1,
-                max: 10
-            }
-        ];
+        dashboardService.getAll().subscribe(function (res) {
+            _this.pairs = res;
+        });
     }
-    DashboardComponent.prototype.ngDoCheck = function () {
-        this.queryObj = this.buildParams(this.pairs);
-    };
     DashboardComponent.prototype.gotoGraph = function () {
         this.router.navigate([
             'graph', this.queryObj
@@ -54,6 +36,7 @@ var DashboardComponent = (function () {
         ]);
     };
     DashboardComponent.prototype.select = function (i) {
+        this.http.get('http://localhost:3000');
         this.editable = true;
         this.selected = {
             name: this.pairs[i].name,
@@ -74,16 +57,13 @@ var DashboardComponent = (function () {
         });
         return queryObj;
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Array)
-    ], DashboardComponent.prototype, "pairs", void 0);
     DashboardComponent = __decorate([
         core_1.Component({
             selector: 'my-dashboard',
-            templateUrl: 'app/dashboard/dashboard.html'
+            templateUrl: 'app/dashboard/dashboard.html',
+            providers: [dashboard_service_1.DashboardService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, http_1.Http, dashboard_service_1.DashboardService])
     ], DashboardComponent);
     return DashboardComponent;
 }());

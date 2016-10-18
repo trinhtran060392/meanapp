@@ -1,46 +1,25 @@
-import { Component, OnChanges, SimpleChange, Input, DoCheck } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, Input, DoCheck, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { Http, Response } from '@angular/http';
 import { Pair } from './pair';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'my-dashboard',
-  templateUrl: 'app/dashboard/dashboard.html'
+  templateUrl: 'app/dashboard/dashboard.html',
+  providers: [ DashboardService ]
 })
-export class DashboardComponent implements DoCheck {
-
-	constructor(private router: Router) {}
+export class DashboardComponent {
 
 	selected: any = {
 	};
 	editable: boolean = false;
 	queryObj = {};
-	@Input() pairs: Pair[] = [
-		{
-			name: "a",
-			value: 9,
-			min: 2,
-			max: 10
-		},{
-			name: "b",
-			value: 4,
-			min: 1,
-			max: 9
-		},{
-			name: "c",
-			value: 6,
-			min: 0,
-			max: 10
-		},{
-			name: "d",
-			value: 8,
-			min: 1,
-			max: 10
-		}
-	];
-
-	ngDoCheck() {
-		this.queryObj = this.buildParams(this.pairs);
+	pairs : Pair[];
+	constructor(private router: Router, private http: Http, private dashboardService : DashboardService) {
+		dashboardService.getAll().subscribe(res => {
+			this.pairs = res
+		});
 	}
 
 	gotoGraph() {
@@ -56,6 +35,7 @@ export class DashboardComponent implements DoCheck {
 	}
 
 	select(i: any) {
+		this.http.get('http://localhost:3000');
 		this.editable = true;
 		this.selected = {
 			name: this.pairs[i].name,
