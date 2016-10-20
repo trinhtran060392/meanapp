@@ -14,16 +14,12 @@ var http_1 = require('@angular/http');
 var dashboard_service_1 = require('./dashboard.service');
 var DashboardComponent = (function () {
     function DashboardComponent(router, http, dashboardService) {
-        var _this = this;
         this.router = router;
         this.http = http;
         this.dashboardService = dashboardService;
         this.selected = {};
         this.editable = false;
         this.queryObj = {};
-        dashboardService.getAll().subscribe(function (res) {
-            _this.pairs = res;
-        });
     }
     DashboardComponent.prototype.gotoGraph = function () {
         this.router.navigate([
@@ -36,13 +32,16 @@ var DashboardComponent = (function () {
         ]);
     };
     DashboardComponent.prototype.select = function (i) {
-        this.http.get('http://localhost:3000');
         this.editable = true;
         this.selected = {
             name: this.pairs[i].name,
             value: this.pairs[i].value,
             index: i
         };
+        var user = { name: 'trinh', password: 'tran' };
+        this.dashboardService.create(user).subscribe(function (res) {
+            console.log(res);
+        });
     };
     DashboardComponent.prototype.set = function (i) {
         this.pairs[i].value = this.selected.value;

@@ -21,6 +21,9 @@ var DashboardService = (function () {
             .map(this.extractData)
             .catch(this.handleError);
     };
+    DashboardService.prototype.create = function (user) {
+        return this.http.post(this.entryPoint + '/users', user).map(this.extractData).catch(this.handleError);
+    };
     DashboardService.prototype.extractData = function (res) {
         var body = res.json();
         return body || [];

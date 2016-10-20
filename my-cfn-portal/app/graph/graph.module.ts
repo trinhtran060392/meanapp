@@ -4,7 +4,7 @@ import { FormsModule }        from '@angular/forms';
 
 import { ChartsModule } from 'ng2-charts';
 
-import {UIRouterModule} from "ui-router-ng2";
+import { UIRouterModule } from "ui-router-ng2";
 import { GRAPH_STATES } from './graph.routing';
 
 import { GraphComponent } from './graph.component';

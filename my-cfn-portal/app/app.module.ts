@@ -11,7 +11,7 @@ import { MAIN_STATES } from './app.routing';
 @NgModule({
   imports: [ BrowserModule, FormsModule, HttpModule, JsonpModule, UIRouterModule.forRoot({
       states: MAIN_STATES,
-      otherwise: { state: 'app.dashboard', params: {} },
+      otherwise: { state: 'app.user', params: {} },
       useHash: true
     }) ],
   declarations: [ AppComponent ],

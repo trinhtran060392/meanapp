@@ -10,16 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/map');
-var ManagementService = (function () {
-    function ManagementService(http) {
+var Observable_1 = require('rxjs/Observable');
+var UserService = (function () {
+    function UserService(http) {
         this.http = http;
+        this.entryPoint = 'http://localhost:3000'; // URL to web API
     }
-    ManagementService = __decorate([
+    UserService.prototype.list = function () {
+        return this.http.get(this.entryPoint + '/user/list')
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    UserService.prototype.create = function (user) {
+        return this.http.post(this.entryPoint + '/user', user).catch(this.handleError);
+    };
+    UserService.prototype.extractData = function (res) {
+        var body = res.json();
+        return body || [];
+    };
+    UserService.prototype.handleError = function (error) {
+        return Observable_1.Observable.throw(error);
+    };
+    UserService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], ManagementService);
-    return ManagementService;
+    ], UserService);
+    return UserService;
 }());
-exports.ManagementService = ManagementService;
-//# sourceMappingURL=management.service.js.map
+exports.UserService = UserService;
+//# sourceMappingURL=user.service.js.map

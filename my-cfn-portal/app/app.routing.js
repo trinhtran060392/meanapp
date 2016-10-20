@@ -16,9 +16,9 @@ exports.MAIN_STATES = [
         lazyLoad: ui_router_ng2_1.loadNgModule('app/graph/graph.module')
     },
     {
-        name: 'app.management',
-        url: '/management',
-        lazyLoad: ui_router_ng2_1.loadNgModule('app/management/management.module')
+        name: 'app.user',
+        url: '/user',
+        lazyLoad: ui_router_ng2_1.loadNgModule('app/user/user.module')
     }
 ];
 //# sourceMappingURL=app.routing.js.map

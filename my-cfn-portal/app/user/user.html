@@ -1,0 +1,20 @@
+<div class="row" style="margin-top: 100px;">
+  <div class="col-sm-12">
+    <div class="form-group">
+      <input type="form-control" name="" [(ngModel)]="user.name">
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="form-group">
+      <input type="form-control" name=""[(ngModel)]="user.password">
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <a class="btn btn-primary" (click)="create()">Create User</a>
+  </div>
+  <div class="col-sm-12">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let user of users">{{user.name}}</li>
+    </ul>
+  </div>
+</div>

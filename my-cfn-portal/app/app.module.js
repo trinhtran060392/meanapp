@@ -23,7 +23,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, http_1.JsonpModule, ui_router_ng2_1.UIRouterModule.forRoot({
                     states: app_routing_1.MAIN_STATES,
-                    otherwise: { state: 'app.dashboard', params: {} },
+                    otherwise: { state: 'app.user', params: {} },
                     useHash: true
                 })],
             declarations: [app_component_1.AppComponent],

@@ -15,9 +15,9 @@ export let MAIN_STATES: Ng2StateDeclaration[] = [
 		url: '/graph',
 		lazyLoad: loadNgModule('app/graph/graph.module')
 	},
-	{
-		name: 'app.management',
-		url: '/management',
-		lazyLoad: loadNgModule('app/management/management.module')
-	}
+  {
+    name: 'app.user',
+    url: '/user',
+    lazyLoad: loadNgModule('app/user/user.module')
+  }
 ];

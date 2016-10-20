@@ -1,33 +1,31 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Pair }           from './pair';
-import { User } from './user';
+import { User }           from './user';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
-export class DashboardService {
+export class UserService {
   private entryPoint = 'http://localhost:3000';  // URL to web API
 
   constructor (private http: Http) {}
 
-  getAll (): Observable<Pair[]> {
-    return this.http.get(this.entryPoint)
+  list (): Observable<User[]> {
+    return this.http.get(this.entryPoint + '/user/list')
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
   create(user: User) : Observable<User[]> {
-    return this.http.post(this.entryPoint + '/users', user).map(this.extractData).catch(this.handleError);
+    return this.http.post(this.entryPoint + '/user', user).catch(this.handleError);
   }
+
   private extractData(res: Response) {
     let body = res.json();
     return body || [];
   }
 
   private handleError (error: any) {
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
-    return Observable.throw(errMsg);
+    return Observable.throw(error);
   }
+
 }

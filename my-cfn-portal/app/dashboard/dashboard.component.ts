@@ -2,6 +2,7 @@ import { Component, OnChanges, SimpleChanges, Input, DoCheck, OnInit, Inject } f
 import { Router } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { Pair } from './pair';
+import { User } from './user';
 import { DashboardService } from './dashboard.service';
 
 @Component({
@@ -17,9 +18,7 @@ export class DashboardComponent {
 	queryObj = {};
 	pairs : Pair[];
 	constructor(private router: Router, private http: Http, private dashboardService : DashboardService) {
-		dashboardService.getAll().subscribe(res => {
-			this.pairs = res
-		});
+		
 	}
 
 	gotoGraph() {
@@ -35,13 +34,16 @@ export class DashboardComponent {
 	}
 
 	select(i: any) {
-		this.http.get('http://localhost:3000');
 		this.editable = true;
 		this.selected = {
 			name: this.pairs[i].name,
 			value: this.pairs[i].value,
 			index: i
 		}
+		let user : User = {name : 'trinh', password : 'tran'};
+		this.dashboardService.create(user).subscribe(res => {
+			console.log(res);
+		});
 	}
 
 	set(i: any) {

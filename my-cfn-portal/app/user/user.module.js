@@ -11,20 +11,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var forms_1 = require('@angular/forms');
-var management_routing_1 = require('./management.routing');
-var management_component_1 = require('./management.component');
-var ManagementModule = (function () {
-    function ManagementModule() {
+var ng2_charts_1 = require('ng2-charts');
+var ui_router_ng2_1 = require("ui-router-ng2");
+var user_routing_1 = require('./user.routing');
+var user_component_1 = require('./user.component');
+var UserModule = (function () {
+    function UserModule() {
     }
-    ManagementModule = __decorate([
+    UserModule = __decorate([
         core_1.NgModule({
-            imports: [common_1.CommonModule, forms_1.FormsModule, management_routing_1.routing],
-            declarations: [management_component_1.ManagementComponent],
-            exports: [management_component_1.ManagementComponent]
+            imports: [common_1.CommonModule, forms_1.FormsModule, ng2_charts_1.ChartsModule, ui_router_ng2_1.UIRouterModule.forChild({ states: user_routing_1.USER_STATES })],
+            declarations: [user_component_1.UserComponent],
+            exports: [user_component_1.UserComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], ManagementModule);
-    return ManagementModule;
+    ], UserModule);
+    return UserModule;
 }());
-exports.ManagementModule = ManagementModule;
-//# sourceMappingURL=management.module.js.map
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = UserModule;
+//# sourceMappingURL=user.module.js.map
