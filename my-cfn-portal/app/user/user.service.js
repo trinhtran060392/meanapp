@@ -24,6 +24,9 @@ var UserService = (function () {
     UserService.prototype.create = function (user) {
         return this.http.post(this.entryPoint + '/user', user).catch(this.handleError);
     };
+    UserService.prototype.delete = function (_id) {
+        return this.http.delete(this.entryPoint + '/user/' + _id);
+    };
     UserService.prototype.extractData = function (res) {
         var body = res.json();
         return body || [];

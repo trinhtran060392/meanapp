@@ -22,16 +22,27 @@ var UserComponent = (function () {
     }
     UserComponent.prototype.create = function () {
         var _this = this;
-        this.userService.create(this.user).subscribe(function (res) {
-            _this.users.push(_this.user);
-            _this.user = { name: '', password: '' };
+        if (this.user.name && this.user.password) {
+            this.userService.create(this.user).subscribe(function (res) {
+                _this.users.push(_this.user);
+                _this.user = { name: '', password: '' };
+            });
+        }
+    };
+    UserComponent.prototype.delete = function (user) {
+        var _this = this;
+        this.userService.delete(user._id).subscribe(function (res) {
+            if (res.status === 200) {
+                var index = _this.users.indexOf(user);
+                _this.users.splice(index, 1);
+            }
         });
-        ;
     };
     UserComponent = __decorate([
         core_1.Component({
             selector: 'my-user',
             templateUrl: 'app/user/user.html',
+            styleUrls: ['app/user/user.css'],
             providers: [user_service_1.UserService]
         }), 
         __metadata('design:paramtypes', [user_service_1.UserService])

@@ -6,6 +6,7 @@ var userService = require('../services/user.service');
 router.get('/list', list);
 
 router.post('/', createUser);
+router.delete('/:id', deleteUser);
 
 function createUser(req, res) {
   userService.create(req.body).then(function () {
@@ -20,5 +21,11 @@ function list(req, res) {
     res.json(data);
   });
 }
+
+function deleteUser(req, res) {
+  userService.deleteUser(req.params.id).then(function () {
+    res.sendStatus(200);
+  });
+};
 
 module.exports = router;

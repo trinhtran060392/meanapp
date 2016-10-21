@@ -19,6 +19,10 @@ export class UserService {
     return this.http.post(this.entryPoint + '/user', user).catch(this.handleError);
   }
 
+  delete(_id: string) : Observable<any> {
+    return this.http.delete(this.entryPoint + '/user/'+_id);
+  }
+
   private extractData(res: Response) {
     let body = res.json();
     return body || [];

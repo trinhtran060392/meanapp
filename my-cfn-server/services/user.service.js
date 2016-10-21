@@ -15,7 +15,8 @@ var User = mongoose.model('Users', userSchema);
 var service = {
   getById : getById,
   create: create,
-  list: list
+  list: list,
+  deleteUser: deleteUser
 };
 module.exports = service;
 
@@ -49,6 +50,17 @@ function list() {
   User.find(function (err, users) {
     if (err) deferred.reject(err.message);
     deferred.resolve(users);
+  });
+
+  return deferred.promise;
+}
+
+function deleteUser(_id) {
+  var deferred = q.defer();
+  console.log(_id);
+  User.findByIdAndRemove(_id, function (err, user) {
+    if (err) deferred.reject(err.message);
+    deferred.resolve();
   });
 
   return deferred.promise;

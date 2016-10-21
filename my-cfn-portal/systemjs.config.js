@@ -24,7 +24,7 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       'ng2-charts': 'npm:ng2-charts',
       'ui-router-ng2':              'node_modules/ui-router-ng2/_bundles/ui-router-ng2.js',
-
+      'lodash': 'node_modules/lodash',
       // other libraries
       'rxjs':                       'npm:rxjs',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
@@ -45,8 +45,12 @@
       'ng2-charts': {
         main: 'ng2-charts.js',
         defaultExtension: 'js'
+      },
+      'lodash': {
+        main: './index.js',
+        defaultExtension: 'js'
       }
     },
-    meta: { "ui-router-ng2": { format: "cjs" } }
+    meta: { "ui-router-ng2": { format: "cjs" }, lodash: {format: 'amd'} }
   });
 })(this);

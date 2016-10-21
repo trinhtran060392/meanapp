@@ -1,20 +1,19 @@
 <div class="row" style="margin-top: 100px;">
   <div class="col-sm-12">
-    <div class="form-group">
-      <input type="form-control" name="" [(ngModel)]="user.name">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <input type="form-control" name="" [(ngModel)]="user.name">
+      </div>
+      <div class="form-group">
+        <input type="form-control" name=""[(ngModel)]="user.password">
+      </div>
+      <a class="btn btn-primary" (click)="create()">Create User</a>
     </div>
-  </div>
-  <div class="col-sm-12">
-    <div class="form-group">
-      <input type="form-control" name=""[(ngModel)]="user.password">
+    <div class="col-sm-6">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let user of users">{{user.name}}<a class="pull-right" 
+          (click)="delete(user)">Delete</a></li>
+      </ul>
     </div>
-  </div>
-  <div class="col-sm-12">
-    <a class="btn btn-primary" (click)="create()">Create User</a>
-  </div>
-  <div class="col-sm-12">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let user of users">{{user.name}}</li>
-    </ul>
   </div>
 </div>
